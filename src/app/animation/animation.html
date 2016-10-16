@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="let hero of _heroes; let index = index"
+        [@heroState]="hero.state"
+        (click)="toggleState($event, index)">
+      <p>
+        {{hero.name}}
+      </p>
+    </li>
+  </ul>

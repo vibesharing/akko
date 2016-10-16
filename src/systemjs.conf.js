@@ -31,7 +31,8 @@
     var npmPackages = [
         '@angular',
         'rxjs',
-        'lodash'
+        'lodash',
+        'angular2-google-maps'
     ];
 
     // Add package entries for packages that expose barrels using index.js
@@ -40,7 +41,8 @@
         'app/shared',
 
         // 3rd party barrels
-        'lodash'
+        'lodash',
+        'angular2-google-maps'
     ];
 
     // Add package entries for angular packages
