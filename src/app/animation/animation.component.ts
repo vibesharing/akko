@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { AnimationService } from './animation.service';
+import { Hero } from './hero.model';
 
 
 @Component({
@@ -32,10 +33,10 @@ import { AnimationService } from './animation.service';
 })
 
 export class AnimationComponent implements OnInit {
-  @Input() heroes: any;
+  @Input() heroes: Hero[];
 
   private _animationService: AnimationService;
-  private _heroes = Array<any>();
+  private _heroes = Array<Hero>();
 
     constructor(animationService: AnimationService) {
       this._animationService = animationService;
@@ -43,11 +44,11 @@ export class AnimationComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-      this._heroes = this._animationService.hereos;
+      this._heroes = this._animationService.heroes;
     }
 
     public toggleState(event: any, index: number) {
       console.log(index);
-      this._heroes[index].state = 'inactive';
+      this._heroes[index].state = this._heroes[index].state === 'active' ? 'inactive' : 'active';
     }
 }

@@ -17,17 +17,17 @@ var AnimationComponent = (function () {
         this._heroes = [];
     }
     AnimationComponent.prototype.ngOnInit = function () {
-        this._heroes = this._animationService.hereos;
+        this._heroes = this._animationService.heroes;
     };
     AnimationComponent.prototype.toggleState = function (event, index) {
         console.log(index);
-        this._heroes[index].state = 'inactive';
+        this._heroes[index].state = this._heroes[index].state === 'active' ? 'inactive' : 'active';
     };
     return AnimationComponent;
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Array)
 ], AnimationComponent.prototype, "heroes", void 0);
 AnimationComponent = __decorate([
     core_1.Component({

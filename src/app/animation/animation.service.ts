@@ -1,34 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Hero } from './hero.model';
 
 @Injectable()
 
 export class AnimationService {
-    private _hereos: Array<any>;
+    private _heroes: Array<Hero>;
 
     constructor() {
-        this._hereos = [
-            {
-                name: 'jhon',
-                age: '28',
-                state: 'active',
-            },
-            {
-                name: 'Phil',
-                age: '45',
-                state: 'active',
-            },
-            {
-                name: 'Patrick',
-                age: '35',
-                state: 'active',
-            }
-        ];
+        this._heroes = [{
+            name: 'jhon',
+            state: 'active',
+        }, {
+            name: 'Patrick',
+            state: 'active',
+        }];
     }
-    public get hereos(): Array<any> {
-        return this._hereos;
+    public get heroes(): Array<Hero> {
+        return this._heroes;
     }
 
-    public set hereos(value: Array<any>){
-        this._hereos = value ;
+    public set heroes(value: Array<Hero>){
+        this._heroes = value ;
     }
 }

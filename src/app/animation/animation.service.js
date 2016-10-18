@@ -11,30 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var AnimationService = (function () {
     function AnimationService() {
-        this._hereos = [
-            {
+        this._heroes = [{
                 name: 'jhon',
-                age: '28',
                 state: 'active',
-            },
-            {
-                name: 'Phil',
-                age: '45',
-                state: 'active',
-            },
-            {
+            }, {
                 name: 'Patrick',
-                age: '35',
                 state: 'active',
-            }
-        ];
+            }];
     }
-    Object.defineProperty(AnimationService.prototype, "hereos", {
+    Object.defineProperty(AnimationService.prototype, "heroes", {
         get: function () {
-            return this._hereos;
+            return this._heroes;
         },
         set: function (value) {
-            this._hereos = value;
+            this._heroes = value;
         },
         enumerable: true,
         configurable: true
