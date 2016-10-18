@@ -7,6 +7,7 @@ import { YoutubeRoutes } from './youtube/index';
 import { QuestionnaireRoutes } from './questionnaire/index';
 import { MapRoutes } from './map/index';
 import { AnimationRoutes } from './animation/index';
+import { TranslationRoutes } from './translation/index';
 
 const appRoutes: Routes = [
     ...HomeRoutes,
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     ...QuestionnaireRoutes,
     ...MapRoutes,
     ...AnimationRoutes,
+    ...TranslationRoutes,
 ];
 
 export const appRoutingProviders: any[] = [

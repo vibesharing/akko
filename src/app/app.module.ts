@@ -15,6 +15,7 @@ import { YoutubeModule } from './youtube/youtube.module';
 import { QuestionnaireModule } from './questionnaire/questionnaire.module';
 import { MapModule } from './map/map.module';
 import { AnimationModule } from './animation/animation.module';
+import { TranslationModule } from './translation/translation.module';
 import { AgmCoreModule } from 'angular2-google-maps/core/index';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core/index';
         TodolistModule,
         WeatherModule,
         YoutubeModule,
+        TranslationModule,
         HttpModule,
         JsonpModule,
         QuestionnaireModule,
