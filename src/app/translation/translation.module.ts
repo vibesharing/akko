@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslationComponent } from './index';
 import { TranslationService } from './translation.service';
+import { TranslationPipe } from './translation.pipe';
 import { HttpModule } from '@angular/http';
+import { TRANSLATION_PROVIDERS } from './translation';
 
 
 @NgModule({
     declarations: [
-        TranslationComponent
+        TranslationComponent, TranslationPipe
     ],
     imports: [
         FormsModule,
@@ -20,7 +22,7 @@ import { HttpModule } from '@angular/http';
         TranslationComponent
     ],
     providers: [
-        TranslationService,
+        TranslationService, TRANSLATION_PROVIDERS
     ],
 })
 export class TranslationModule {

@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-// import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
-// import { TranslationService } from './translation.service';
-
+import { TranslationService } from './translation.service';
 
 @Component({
     selector: 'as-translation',
@@ -12,22 +7,37 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 
 export class TranslationComponent implements OnInit {
-    private _formBuilder: FormBuilder;
-    private _registerForm: FormGroup;
+    public translatedText: string;
+    public supportedLangs: any[];
+    private _translationService: TranslationService;
 
-    constructor( formBuilder: FormBuilder) {
-        this._formBuilder = formBuilder;
+    constructor( translationService: TranslationService) {
+        this._translationService = translationService;
     }
 
     public ngOnInit(): void {
-        this._registerForm = this._formBuilder.group({
-            firstname: ['', Validators.minLength(3)],
-            lastname: ['', Validators.minLength(3)],
-            /*address: this._formBuilder.group({
-                street: '',
-                zip: '',
-                city: ''
-            })*/
-        });
+       this.supportedLangs = [
+        { display: 'English', value: 'en' },
+        { display: 'French', value: 'fr' },
+        ];
+        this._selectLang('fr');
+        this._subscribeToLangChanged();
+    }
+
+    public isCurrentLang(lang: string) {
+        return lang === this._translationService.currentLang;
+    }
+
+    private _selectLang(lang: string) {
+        this._translationService.use(lang);
+        this._refreshText();
+    }
+
+    private _refreshText() {
+        this.translatedText = this._translationService.instant('hello world');
+    }
+
+    private _subscribeToLangChanged() {
+        return this._translationService.onLangChanged.subscribe(x => this._refreshText());
     }
 }

@@ -1,24 +1,56 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import {Observable} from 'rxjs/Rx';
+import { Injectable, Inject, EventEmitter } from '@angular/core';
+import { TRANSLATIONS } from './translation';
 
-// Import RxJs required methods
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 @Injectable()
 
 export class TranslationService {
-    private _http: Http;
+    public onLangChanged: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor(http: Http) {
-        this._http = http;
+    private _currentLang: string;
+    private PLACEHOLDER: string = '%';
+
+    constructor(
+        @Inject(TRANSLATIONS) private _translations: any) {
     }
 
-    public searchMovie() {
-        this._http.get('http://192.168.1.14:8000/todos')
-        .map((res: Response) => res.json())
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    public get currentLang(): string {
+        return this._currentLang;
+    }
+
+    public use(lang: string): void {
+        this._currentLang = lang;
+
+        this.onLangChanged.emit(lang);
+
+    }
+
+    public instant(key: string, words?: string | string[]) {
+        const translation: string = this._translate(key);
+
+        if (!words) {
+            return translation;
+        }
+
+        return this._replace(translation, words);
+    }
+
+    private _translate(key: string): string {
+        if (this._translations[this.currentLang] && this._translations[this.currentLang][key]) {
+            return this._translations[this.currentLang][key];
+        }
+        return key;
+    }
+
+    private _replace(word: string, words: string | string[]) {
+        let translation: string = word;
+
+        const values: string[] = [].concat(words);
+            values.forEach((element, index) => {
+                translation = translation.replace(this.PLACEHOLDER.concat(<any>index), element);
+        });
+        console.log(translation);
+        return translation;
     }
 }
 

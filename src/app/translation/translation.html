@@ -1,15 +1,40 @@
- <div class="row">
-    <form (ngSubmit)="onSubmit()" [formGroup]="_registerForm">
-        <label>Firstname:</label>
-        <input type="text" formControlName="firstname">
-        <p *ngIf="_registerForm.controls.firstname.errors">This field is required!</p>
-
-         <label>lastname:</label>
-        <input type="text" formControlName="lastname">
-        <p *ngIf="_registerForm.controls.lastname.errors">This field is required!</p>
-    </form>
- <div class="row">
-     <div class="form-row">
-      <button type="submit" [disabled]="!_registerForm.valid">Save</button>
+<div class="container">
+    <h4>Translate: Hello World</h4>
+    <!--languages-->
+    <div class="btn-group">
+        <button *ngFor="let lang of supportedLangs"
+            (click)="_selectLang(lang.value)"
+            class="btn btn-default" [class.btn-primary]="isCurrentLang(lang.value)">
+            {{ lang.display }}
+        </button>
     </div>
- </div>
+    <div>
+        <!--translate with pipe-->
+        <p>
+            Translate With Pipe: <strong>{{ 'hello world' | asTranslate }}</strong>
+        </p>
+
+        <p>
+            <strong>{{ 'introduction' | asTranslate }}</strong>
+        </p>
+
+        <!--reanslate with service-->
+        <p>
+            Translate with Service: <strong>{{ translatedText }}</strong>
+        </p>
+    </div>
+</div>
+    <div>
+    <p>
+        Translate <strong class="text-muted">Hello, %0 %1!</strong>:
+    <br>
+        <strong>{{ 'hello greet' | asTranslate:['Jane', 'Doe'] }}</strong>
+    </p>
+
+    <!--single value-->
+    <p>
+        Translate <strong class="text-muted">Well done %0</strong>: 
+        <br>
+        <strong>{{ 'well done' | asTranslate:'John' }}</strong>
+    </p>
+</div>
