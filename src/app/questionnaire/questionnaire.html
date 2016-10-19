@@ -1,12 +1,14 @@
  <div class="row">
     <form (ngSubmit)="onSubmit()" [formGroup]="_registerForm">
-        <label>Firstname:</label>
-        <input type="text" formControlName="firstname">
-        <p *ngIf="_registerForm.controls.firstname.errors">This field is required!</p>
+        <div class="form-group">
+            <label>Firstname:</label>
+            <input type="text" class="form-control" formControlName="firstname">
+            <p *ngIf="_registerForm.controls.firstname.errors">This field is required!</p>
 
-         <label>lastname:</label>
-        <input type="text" formControlName="lastname">
-        <p *ngIf="_registerForm.controls.lastname.errors">This field is required!</p>
+            <label>lastname:</label>
+            <input type="text" class="form-control" formControlName="lastname">
+            <p *ngIf="_registerForm.controls.lastname.errors">This field is required!</p>
+        </div>
     </form>
  <div class="row">
      <div class="form-row">
